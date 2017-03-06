@@ -1,0 +1,231 @@
+::start [nuit] <776,201>
+!Le Mini-Monde
+<<auto-image "Matins qui chantent - Pierre Kessler - 2017">>
+Un démonstrateur des possibilités du format //SugarCube 2// dans Twine. Cliquez sur la ''flèche'' à votre gauche pour faire apparaître le menu. Voyez aussi le [[dépôt Github|https://github.com/marathon67/mini-monde]].
+!!!Prêt à [[découvrir mon petit monde|maison]] ?
+----
+!!Fonctionnalités proposées ici
+* Traduction en français de la barre de menu latérale et des différentes commandes
+* CSS alternative claire
+* Affichage d'un tableau de bord (points, variables d'espérience, force) dans cette même barre latérale
+* Menu pour un accès direct à certains passages dans la barre latérale
+* Insertion de médias en ligne (affichage direct sans enregistrement comme fichier)
+* ImageMap avec accès direct à des passages de l'aventure
+* Insertion semi-automatique des images par dépôt dans le dossier medias d'un fichier .jpg du même nom que le passage
+* Organisation des passages en chapitre au moyen des balises
+* Gestion d'une ambiance sonore et graphique
+* Temporisation
+* Gestion d'un inventaire
+* Gestion des paramètres du jeu
+* Gestion de points gagnés et d'une victoire finale...
+!!!!Importez ce jeu dans votre ''Twine'' pour découvrir tous les //snippets// de code à récupérer.
+
+/*! Section Introduction */
+::maison [maison] <784,429>
+!Fenêtre sur mini-planète
+<<nobr>>
+<<set _choix to either("compost", "bagnole", "grange", "promenade", "escalier")>>
+<figure>
+<<set $map_image to "<img src="+$online_medias_url+passage()+".jpg"+" width=\"760\" height=\"507\" border=\"0\" usemap=\"#map\" />">>
+<<print $map_image>>
+<figcaption>Little Planet - P. Kessler - 2013 </figcaption>
+</figure>
+<<if visited() gt 1 >><<display "chrono">>
+	<<else>>
+	<<display "mission" "span">>''<<linkreplace "J'accepte la mission">><<remove ".passage-mission">><<display "chrono">><</linkreplace>>''
+<</if>>
+<</nobr>>
+
+::chrono <1520,356>
+* Il vous reste ''<span id="countdown">30</span> secondes'' pour parcourir l'image ci-dessus avec la souris\
+<<silently>>
+<<set _seconds to 30>>
+    <<repeat 1s>>
+        <<set _seconds to _seconds - 1>>
+        <<if _seconds gt 9>>
+            <<replace "#countdown">>_seconds<</replace>>
+        <<elseif _seconds gt 0>>
+            <<replace "#countdown">>0_seconds<</replace>>
+        <<else>>
+            <<goto _choix>>
+            <<stop>>
+        <</if>>
+    <</repeat>>
+<</silently>>
+<<nobr>>
+<map name="map">
+<area alt="Grange" title="Grange" data-passage="grange" coords="77,203,189,118,179,81,186,75,148,59,5,113,3,156,35,210,59,196" shape="poly" />
+<area alt="Compost" title="Compost" data-passage="compost" coords="80,353,21" shape="circle" />
+<area alt="Bagnole" title="Bagnole" data-passage="bagnole" coords="521,140,577,208" shape="rect" />
+<area alt="Affût" title="Affût" data-passage="affut" coords="409,165,444,200" shape="rect" />
+<area alt="Promenade" title="Promenade" data-passage="promenade" coords="727,118,32" shape="circle" />
+<area alt="Escalier" title="Escalier" data-passage="escalier" coords="198,412,330,478" shape="rect" />
+</map>
+<</nobr>>
+
+::mission <1519,487>
+!! Si vous acceptez cette mission, vous devez :
+* Trouver l'un des ''six'' points cliquables dans le panorama ci-dessus pour poursuivre votre exploration. 
+* Débusquer ''huit'' animaux différents pour ''gagner la partie''.
+* Éviter la piqûre des guêpes géantes !
+* Vous pouvez aussi découvrir la [[localisation|carte]] du Mini-monde sur OpenStreetMap\
+
+/*! Section Jardin */
+::bagnole [jardin] <607,109>
+!La bagnole
+<<auto-image "Le roi boit - Pierre. Kessler - 2012 ">>
+Euh, non, je crois bien que c'est une //Pigeot//, pas une //Coléo// !
+*[[Je retourne à ma fenêtre|maison]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::compost [jardin] <604,297>
+!Le compost
+<<auto-image "Lézard au naturel sur son lit de compost - P. Kessler - 2013">> 
+C'est fou ce qu'on peut trouver comme vie dans un gros tas de déchets en putréfaction...  
+*[[Je creuse un peu...|tegenaire]]
+*[[Je retourne à ma fenêtre|maison]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::tegenaire [jardin] <476,294>
+!Au secours !
+<<auto-image "Araignée tégénaire - P. Kessler - 2013">>
+Cette idée, aussi, d'aller déranger la ''tégénaire'' ! Mais rassurez-vous, cette araignée-là est inoffensive. Enfin, pour l'homme.
+Par contre, l'araignée s'invite dans votre panier...<<addToInv "une araignée tégénaire">>
+*[[Je retourne à ma fenêtre|maison]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::grange [jardin] <599,422>
+!La grange
+<<auto-image "L'envol - P. Kessler - 2013">>
+Si la grange du voisin n'est pas forcément décorative, elle a parfois des visiteurs sympas...  
+*[[Je veux observer la cigogne|cigogne]]
+*[[Je retourne à ma fenêtre|maison]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::cigogne [jardin] <474,419>
+!Vive l'Alsace
+<<auto-image "Cigogne en vol - P. Kessler - 2013">>
+Et le magnifique oiseau qui en est un des symboles...
+*[[Je retourne à ma fenêtre|maison]]
+
+::affut [jardin] <599,547>
+! Une chaise-affût
+<<auto-image "Envol de mésange bleue - P. Kessler - 2015">>
+De là, bien camouflé, on peut observer et/ou photographier, tous les petits animaux du jardin. Oiseaux, grenouilles, hérissons...  
+Et même tenter de les photographier en vol, comme cette mésange bleue.
+*[[Je retourne à ma fenêtre|maison]]
+*Je jette un coup d'œil [[aux grenouilles|grenouille]]
+*Je n'ai pas encore vu Robin le [[rouge-gorge|rouge-gorge]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::grenouille [jardin] <467,550>
+!Grenouille
+<<auto-image "Un œil d'or - P. Kessler - 2016">>
+Un petit bassin de rien du tout, c'est suffisant pour avoir quelques grenouilles.  
+*[[Je retourne à ma fenêtre|maison]]
+*Non, non ! Encore [[un peu d'affût|affut]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+::rouge-gorge [jardin] <599,678>
+!Robin
+<<auto-image "Robin : portrait au seau - P. Kessler - 2016">>
+Robin, c'est le rouge-gorge du jardin. Si familier qu'il a même un nom !
+*[[Je retourne à ma fenêtre|maison]]
+*Non, non ! Encore [[un peu d'affût|affut]] ou alors, [[un coup d'œil au tas de compost|compost]]...
+<<if visited() is 1 >>
+	<<set $animaux +=1>>Dans la Maison
+<</if>>
+
+/*! Section Infos */
+::carte <1078,505>
+!Localisation
+<iframe width="700" height="550" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=7.459974288940431%2C48.85861640881589%2C7.488255500793458%2C48.87061477566309&amp;layer=mapnik" style="border: 1px solid black"></iframe>
+Une carte proposée depuis le site OpenStreetMap sous forme d'//iframe// incluse dans la page Twine. 
+Attention, un iframe dans une page ''https'' doit être aussi en ''https''.
+* <<back "Je retourne à l'aventure">>
+
+::credits <1204,504>
+!Crédits
+<<auto-image "Selfie gore - P. Kessler - 2016">>
+Une aventure réalisée grâce aux outils et documents suivants :
+* [[Linux Mint|https://www.linuxmint.com/]] pour le système
+* [[Twine 2.0.11|https://twinery.org]] et [[Sugarcube 2.1.3|http://www.motoslave.net/sugarcube/2/]] pour l'histoire interactive
+* [[Atom|https://atom.io/]] pour l'édition de codes
+* [[Git|https://git-scm.com/]] et [[Github|https://github.com/]] pour le //versionning// et l'hébergement
+* [[The Gimp|https://www.gimp.org/]] pour le traitement des images
+* et [[Audacity|http://audacity.fr/]] pour celui des sons.
+* Les ambiances sonores ont été créées par [[Bensound|http://www.bensound.com/]]. 
+* Les crédits des photographies sont indiqués sous chacune d'elles.
+* Un grand merci aux animateurs du [[forum Twine|https://twinery.org/forum]] pour leurs précieux conseils distillés quasi-quotidiennement.
+Et aucun animal n'a été maltraité pendant cette réalisation? Ni aucun logiciel propriétaire utilisé...
+* <<back "Je retourne à l'aventure">>
+
+/*! Section Forêt */
+::promenade [foret] <660,803>
+!Aux champignons
+<<auto-image "En sous-bois - P. Kessler - 2016">>
+Je mets un de ces champignons dans mon panier, puis...
+<<addToInv "un champignon vénéneux">>
+* Je fais quelques pas et [[je retourne à ma fenêtre|maison]] ?
+* Non, je veux ramasser [[encore quelques champignons|champignons]] ?
+<<set $experience to $experience+10>>
+
+::champignons [foret] <513,803>
+!Aux champignons
+<<auto-image "En sous-bois - P. Kessler - 2016">>
+Êtes-vous vous bien sûr que ces champignons sont comestibles ?  
+*[[Je retourne à ma fenêtre|maison]]
+*[[Je prends le chemin qui s'enfonce dans le bois|chevreuil]]
+<<addToInv "quelques belles girolles">>
+
+::chevreuil [foret] <380,809>
+!Brève rencontre
+<<auto-image "Brève rencontre - P. Kessler - 2011">>
+Les chevreuils sont nombreaux dans le [[Neubruchwald|carte]]. Mais pas de sangliers !
+*[[Je retourne à ma fenêtre|maison]]
+<<if visited() is 1 >>
+	<<set $animaux +=1>>
+<</if>>
+
+/*! Section Dans la Maison */
+::escalier [maison] <912,625>
+!Dans la maison
+<<auto-image "Escalier fish-eye - P. Kessler - 2015">>
+*[[Je retourne à ma fenêtre|maison]]
+* Ou on continue [[jusqu'au salon|salon]] ?
+
+::salon [maison] <912,750>
+!Au salon
+<<auto-image "Salon fish-eye - P. Kessler - 2015">>
+Rien de bien particulier ici. Mais surtout, n'allez pas fureter avec votre souris dans <<mousegoto "perdu">>les ''tiroirs du bureau''<</mousegoto>> !
+*[[Je retourne à ma fenêtre|maison]]
+
+/*! Section Game Over */
+::victoire [nuit] <1515,106>
+!Vous avez gagné !
+<<auto-image "La Victoire guidant le peuple - Burgermac - 2016">>
+Vous avez su trouver tous les animaux. ''Bravo''!    
+----
+Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.  
+Et merci de votre visite dans ce ''mini-monde''.
+<<set $animaux to 0>>
+
+::perdu [nuit] <1521,612>
+!Vous avez perdu !
+<<auto-image "Vespula Germanica - P. Kessler - 2015">>
+Vous avez trouvé un animal de trop : ''vous étiez pourtant prévenu(e)'' !    
+La piqûre de cette guêpe géante vous inflige d'horribles souffrances. Vous n'êtes plus en état de continuer la partie : il vous faut quitter le ''mini-monde''.
+----
+Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.

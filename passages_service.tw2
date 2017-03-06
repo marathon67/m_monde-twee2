@@ -1,0 +1,88 @@
+::StoryCaption <1140,227>
+''Tableau de bord''
+Points : $points
+Expérience : $experience
+Animaux vus (sur $max_animaux) : $animaux
+
+::StoryInit <1263,102>
+<<set $online_medias_url to "https://www.bac-a-sable.eu/mini-monde/medias/">>
+<<initInv>>
+<<set $son_nuit to $online_medias_url+"start.mp3">>
+<<set $son_maison to $online_medias_url+"maison.mp3">>
+<<set $son_foret to $online_medias_url+"foret.mp3">>
+<<set $son_jardin to $online_medias_url+"jardin.mp3">>
+<<cacheaudio "nuit" $son_nuit>>
+<<cacheaudio "maison" $son_maison>>
+<<cacheaudio "foret" $son_foret>>
+<<cacheaudio "jardin" $son_jardin>>
+<<waitforaudio>>
+<<addToInv "un petit panier en osier">>
+<<set $points to 0>>
+<<set $experience to 10>>
+<<set $track to "nuit">>
+<<set $animaux to 0>>
+<<set $max_animaux to 8>>
+
+::StoryMenu <1011,227>
+[[Vue sur la planète|maison]]
+[[En forêt|promenade]]
+[[Affût dans le jardin|affut]]
+[[Dans la maison|escalier]]
+<hr />
+<<click "Inventaire">>
+	<<script>>
+	var dialog = Dialog.setup("Inventaire", "my-dialog-class");
+	new Wikifier(dialog, Story.get("inventaire").processText());
+	Dialog.open();
+	<</script>>
+<</click>>
+[[Crédits|credits]]
+<<click "Variables">><<checkvars>><</click>>
+
+::StoryBanner <1265,232>
+Bienvenue dans mon...
+
+::PassageHeader <1138,102>
+<<silently>>
+<<if settings.audioEnabled>>
+	<<if tags().includes("silence")>>
+		<<audio ":playing" pause>>
+	<<elseif tags().includes("nuit")>>
+		<<set $track to "nuit">>
+	<<elseif tags().includes("maison")>>
+		<<set $track to "maison">>
+	<<elseif tags().includes("jardin")>>
+		<<set $track to "jardin">>	
+	<<elseif tags().includes("foret")>>
+   		<<set $track to "foret">>
+	<</if>>
+	<<if ($track neq $last_track)>>
+		<<audio ":playing" stop>>
+		<<audio $track loop play>>
+		<<set $last_track to $track>>
+	<</if>>
+	<<else>>
+	<<masteraudio stop>>
+	<</if>
+<</if>>
+<</silently>>
+
+::PassageFooter <1012,99>
+<hr />
+<nobr><small>Réalisé avec ''[[Twine|https://twinery.org]]'' - P. Kessler - février 2017 -  Licence <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/">Creative Commons BY-NC-SA</a></small></nobr>
+
+::inventaire <1518,231>
+<<if $inventory.length == 0>>Vous n'avez rien. Rien du tout.<<else>>''Vous avez en votre possession :''
+<<listInv>>
+<</if>>
+
+::Widgets [widget nobr] <1525,745>
+<<widget "auto-image">>
+	<<nobr>>
+	<<set $image to $online_medias_url+passage()+".jpg">>
+	<figure>
+		[img[$image]]
+		<figcaption>$args[0]</figcaption>
+	</figure>
+	<</nobr>>
+<</widget>>

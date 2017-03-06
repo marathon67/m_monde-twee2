@@ -522,32 +522,9 @@ Un démonstrateur des possibilités du format //SugarCube 2// dans Twine. Clique
 * Gestion d'un inventaire
 * Gestion des paramètres du jeu
 * Gestion de points gagnés et d'une victoire finale...
-!!!!Importez ce jeu dans votre ''Twine'' pour découvrir tous les //snippets// de code à récupérer.</tw-passagedata><tw-passagedata pid="2" name="StoryCaption" tags="" position="1140,227">''Tableau de bord''
-Points : $points
-Expérience : $experience
-Animaux vus (sur $max_animaux) : $animaux</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="1263,102">&lt;&lt;set $online_medias_url to "https://www.bac-a-sable.eu/mini-monde/medias/"&gt;&gt;
-&lt;&lt;initInv&gt;&gt;
-&lt;&lt;set $son_nuit to $online_medias_url+"start.mp3"&gt;&gt;
-&lt;&lt;set $son_maison to $online_medias_url+"maison.mp3"&gt;&gt;
-&lt;&lt;set $son_foret to $online_medias_url+"foret.mp3"&gt;&gt;
-&lt;&lt;set $son_jardin to $online_medias_url+"jardin.mp3"&gt;&gt;
-&lt;&lt;cacheaudio "nuit" $son_nuit&gt;&gt;
-&lt;&lt;cacheaudio "maison" $son_maison&gt;&gt;
-&lt;&lt;cacheaudio "foret" $son_foret&gt;&gt;
-&lt;&lt;cacheaudio "jardin" $son_jardin&gt;&gt;
-&lt;&lt;waitforaudio&gt;&gt;
-&lt;&lt;addToInv "un petit panier en osier"&gt;&gt;
-&lt;&lt;set $points to 0&gt;&gt;
-&lt;&lt;set $experience to 10&gt;&gt;
-&lt;&lt;set $track to "nuit"&gt;&gt;
-&lt;&lt;set $animaux to 0&gt;&gt;
-&lt;&lt;set $max_animaux to 8&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="promenade" tags="foret" position="660,803">!Aux champignons
-&lt;&lt;auto-image "En sous-bois - P. Kessler - 2016"&gt;&gt;
-Je mets un de ces champignons dans mon panier, puis...
-&lt;&lt;addToInv "un champignon vénéneux"&gt;&gt;
-* Je fais quelques pas et [[je retourne à ma fenêtre|maison]] ?
-* Non, je veux ramasser [[encore quelques champignons|champignons]] ?
-&lt;&lt;set $experience to $experience+10&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="maison" tags="maison" position="784,429">!Fenêtre sur mini-planète
+!!!!Importez ce jeu dans votre ''Twine'' pour découvrir tous les //snippets// de code à récupérer.
+
+/*! Section Introduction */</tw-passagedata><tw-passagedata pid="2" name="maison" tags="maison" position="784,429">!Fenêtre sur mini-planète
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;set _choix to either("compost", "bagnole", "grange", "promenade", "escalier")&gt;&gt;
 &lt;figure&gt;
@@ -559,138 +536,7 @@ Je mets un de ces champignons dans mon panier, puis...
 	&lt;&lt;else&gt;&gt;
 	&lt;&lt;display "mission" "span"&gt;&gt;''&lt;&lt;linkreplace "J'accepte la mission"&gt;&gt;&lt;&lt;remove ".passage-mission"&gt;&gt;&lt;&lt;display "chrono"&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;''
 &lt;&lt;/if&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="bagnole" tags="jardin" position="607,109">!La bagnole
-&lt;&lt;auto-image "Le roi boit - Pierre. Kessler - 2012 "&gt;&gt;
-Euh, non, je crois bien que c'est une //Pigeot//, pas une //Coléo// !
-*[[Je retourne à ma fenêtre|maison]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="compost" tags="jardin" position="604,297">!Le compost
-&lt;&lt;auto-image "Lézard au naturel sur son lit de compost - P. Kessler - 2013"&gt;&gt; 
-C'est fou ce qu'on peut trouver comme vie dans un gros tas de déchets en putréfaction...  
-*[[Je creuse un peu...|tegenaire]]
-*[[Je retourne à ma fenêtre|maison]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="grange" tags="jardin" position="599,422">!La grange
-&lt;&lt;auto-image "L'envol - P. Kessler - 2013"&gt;&gt;
-Si la grange du voisin n'est pas forcément décorative, elle a parfois des visiteurs sympas...  
-*[[Je veux observer la cigogne|cigogne]]
-*[[Je retourne à ma fenêtre|maison]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="StoryMenu" tags="" position="1011,227">[[Vue sur la planète|maison]]
-[[En forêt|promenade]]
-[[Affût dans le jardin|affut]]
-[[Dans la maison|escalier]]
-&lt;hr /&gt;
-&lt;&lt;click "Inventaire"&gt;&gt;
-	&lt;&lt;script&gt;&gt;
-	var dialog = Dialog.setup("Inventaire", "my-dialog-class");
-	new Wikifier(dialog, Story.get("inventaire").processText());
-	Dialog.open();
-	&lt;&lt;/script&gt;&gt;
-&lt;&lt;/click&gt;&gt;
-[[Crédits|credits]]
-&lt;&lt;click "Variables"&gt;&gt;&lt;&lt;checkvars&gt;&gt;&lt;&lt;/click&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="carte" tags="" position="1078,505">!Localisation
-&lt;iframe width="700" height="550" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=7.459974288940431%2C48.85861640881589%2C7.488255500793458%2C48.87061477566309&amp;amp;layer=mapnik" style="border: 1px solid black"&gt;&lt;/iframe&gt;
-Une carte proposée depuis le site OpenStreetMap sous forme d'//iframe// incluse dans la page Twine. 
-Attention, un iframe dans une page ''https'' doit être aussi en ''https''.
-* &lt;&lt;back "Je retourne à l'aventure"&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="PassageHeader" tags="" position="1138,102">&lt;&lt;silently&gt;&gt;
-&lt;&lt;if settings.audioEnabled&gt;&gt;
-	&lt;&lt;if tags().includes("silence")&gt;&gt;
-		&lt;&lt;audio ":playing" pause&gt;&gt;
-	&lt;&lt;elseif tags().includes("nuit")&gt;&gt;
-		&lt;&lt;set $track to "nuit"&gt;&gt;
-	&lt;&lt;elseif tags().includes("maison")&gt;&gt;
-		&lt;&lt;set $track to "maison"&gt;&gt;
-	&lt;&lt;elseif tags().includes("jardin")&gt;&gt;
-		&lt;&lt;set $track to "jardin"&gt;&gt;	
-	&lt;&lt;elseif tags().includes("foret")&gt;&gt;
-   		&lt;&lt;set $track to "foret"&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;if ($track neq $last_track)&gt;&gt;
-		&lt;&lt;audio ":playing" stop&gt;&gt;
-		&lt;&lt;audio $track loop play&gt;&gt;
-		&lt;&lt;set $last_track to $track&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-	&lt;&lt;else&gt;&gt;
-	&lt;&lt;masteraudio stop&gt;&gt;
-	&lt;&lt;/if&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="PassageFooter" tags="" position="1012,99">&lt;hr /&gt;
-&lt;nobr&gt;&lt;small&gt;Réalisé avec ''[[Twine|https://twinery.org]]'' - P. Kessler - février 2017 -  Licence &lt;a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/"&gt;Creative Commons BY-NC-SA&lt;/a&gt;&lt;/small&gt;&lt;/nobr&gt;</tw-passagedata><tw-passagedata pid="13" name="credits" tags="" position="1204,504">!Crédits
-&lt;&lt;auto-image "Selfie gore - P. Kessler - 2016"&gt;&gt;
-Une aventure réalisée grâce aux outils et documents suivants :
-* [[Linux Mint|https://www.linuxmint.com/]] pour le système
-* [[Twine 2.0.11|https://twinery.org]] et [[Sugarcube 2.1.3|http://www.motoslave.net/sugarcube/2/]] pour l'histoire interactive
-* [[Atom|https://atom.io/]] pour l'édition de codes
-* [[Git|https://git-scm.com/]] et [[Github|https://github.com/]] pour le //versionning// et l'hébergement
-* [[The Gimp|https://www.gimp.org/]] pour le traitement des images
-* et [[Audacity|http://audacity.fr/]] pour celui des sons.
-* Les ambiances sonores ont été créées par [[Bensound|http://www.bensound.com/]]. 
-* Les crédits des photographies sont indiqués sous chacune d'elles.
-* Un grand merci aux animateurs du [[forum Twine|https://twinery.org/forum]] pour leurs précieux conseils distillés quasi-quotidiennement.
-Et aucun animal n'a été maltraité pendant cette réalisation? Ni aucun logiciel propriétaire utilisé...
-* &lt;&lt;back "Je retourne à l'aventure"&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="StoryBanner" tags="" position="1265,232">Bienvenue dans mon...</tw-passagedata><tw-passagedata pid="15" name="tegenaire" tags="jardin" position="476,294">!Au secours !
-&lt;&lt;auto-image "Araignée tégénaire - P. Kessler - 2013"&gt;&gt;
-Cette idée, aussi, d'aller déranger la ''tégénaire'' ! Mais rassurez-vous, cette araignée-là est inoffensive. Enfin, pour l'homme.
-Par contre, l'araignée s'invite dans votre panier...&lt;&lt;addToInv "une araignée tégénaire"&gt;&gt;
-*[[Je retourne à ma fenêtre|maison]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="cigogne" tags="jardin" position="474,419">!Vive l'Alsace
-&lt;&lt;auto-image "Cigogne en vol - P. Kessler - 2013"&gt;&gt;
-Et le magnifique oiseau qui en est un des symboles...
-*[[Je retourne à ma fenêtre|maison]]</tw-passagedata><tw-passagedata pid="17" name="champignons" tags="foret" position="513,803">!Aux champignons
-&lt;&lt;auto-image "En sous-bois - P. Kessler - 2016"&gt;&gt;
-Êtes-vous vous bien sûr que ces champignons sont comestibles ?  
-*[[Je retourne à ma fenêtre|maison]]
-*[[Je prends le chemin qui s'enfonce dans le bois|chevreuil]]
-&lt;&lt;addToInv "quelques belles girolles"&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="affut" tags="jardin" position="599,547">! Une chaise-affût
-&lt;&lt;auto-image "Envol de mésange bleue - P. Kessler - 2015"&gt;&gt;
-De là, bien camouflé, on peut observer et/ou photographier, tous les petits animaux du jardin. Oiseaux, grenouilles, hérissons...  
-Et même tenter de les photographier en vol, comme cette mésange bleue.
-*[[Je retourne à ma fenêtre|maison]]
-*Je jette un coup d'œil [[aux grenouilles|grenouille]]
-*Je n'ai pas encore vu Robin le [[rouge-gorge|rouge-gorge]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="chevreuil" tags="foret" position="380,809">!Brève rencontre
-&lt;&lt;auto-image "Brève rencontre - P. Kessler - 2011"&gt;&gt;
-Les chevreuils sont nombreaux dans le [[Neubruchwald|carte]]. Mais pas de sangliers !
-*[[Je retourne à ma fenêtre|maison]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="grenouille" tags="jardin" position="467,550">!Grenouille
-&lt;&lt;auto-image "Un œil d'or - P. Kessler - 2016"&gt;&gt;
-Un petit bassin de rien du tout, c'est suffisant pour avoir quelques grenouilles.  
-*[[Je retourne à ma fenêtre|maison]]
-*Non, non ! Encore [[un peu d'affût|affut]]
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="escalier" tags="maison" position="912,625">!Dans la maison
-&lt;&lt;auto-image "Escalier fish-eye - P. Kessler - 2015"&gt;&gt;
-*[[Je retourne à ma fenêtre|maison]]
-* Ou on continue [[jusqu'au salon|salon]] ?</tw-passagedata><tw-passagedata pid="22" name="salon" tags="maison" position="912,750">!Au salon
-&lt;&lt;auto-image "Salon fish-eye - P. Kessler - 2015"&gt;&gt;
-Rien de bien particulier ici. Mais surtout, n'allez pas fureter avec votre souris dans &lt;&lt;mousegoto "perdu"&gt;&gt;les ''tiroirs du bureau''&lt;&lt;/mousegoto&gt;&gt; !
-*[[Je retourne à ma fenêtre|maison]]</tw-passagedata><tw-passagedata pid="23" name="rouge-gorge" tags="jardin" position="599,678">!Robin
-&lt;&lt;auto-image "Robin : portrait au seau - P. Kessler - 2016"&gt;&gt;
-Robin, c'est le rouge-gorge du jardin. Si familier qu'il a même un nom !
-*[[Je retourne à ma fenêtre|maison]]
-*Non, non ! Encore [[un peu d'affût|affut]] ou alors, [[un coup d'œil au tas de compost|compost]]...
-&lt;&lt;if visited() is 1 &gt;&gt;
-	&lt;&lt;set $animaux +=1&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="inventaire" tags="" position="1518,231">&lt;&lt;if $inventory.length == 0&gt;&gt;Vous n'avez rien. Rien du tout.&lt;&lt;else&gt;&gt;''Vous avez en votre possession :''
-&lt;&lt;listInv&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="victoire" tags="nuit" position="1515,106">!Vous avez gagné !
-&lt;&lt;auto-image "La Victoire guidant le peuple - Burgermac - 2016"&gt;&gt;
-Vous avez su trouver tous les animaux. ''Bravo''!    
-----
-Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.  
-Et merci de votre visite dans ce ''mini-monde''.
-&lt;&lt;set $animaux to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="chrono" tags="" position="1520,356">* Il vous reste ''&lt;span id="countdown"&gt;30&lt;/span&gt; secondes'' pour parcourir l'image ci-dessus avec la souris\
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="chrono" tags="" position="1520,356">* Il vous reste ''&lt;span id="countdown"&gt;30&lt;/span&gt; secondes'' pour parcourir l'image ci-dessus avec la souris\
 &lt;&lt;silently&gt;&gt;
 &lt;&lt;set _seconds to 30&gt;&gt;
     &lt;&lt;repeat 1s&gt;&gt;
@@ -714,16 +560,182 @@ Et merci de votre visite dans ce ''mini-monde''.
 &lt;area alt="Promenade" title="Promenade" data-passage="promenade" coords="727,118,32" shape="circle" /&gt;
 &lt;area alt="Escalier" title="Escalier" data-passage="escalier" coords="198,412,330,478" shape="rect" /&gt;
 &lt;/map&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="mission" tags="" position="1519,487">!! Si vous acceptez cette mission, vous devez :
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="mission" tags="" position="1519,487">!! Si vous acceptez cette mission, vous devez :
 * Trouver l'un des ''six'' points cliquables dans le panorama ci-dessus pour poursuivre votre exploration. 
 * Débusquer ''huit'' animaux différents pour ''gagner la partie''.
 * Éviter la piqûre des guêpes géantes !
-* Vous pouvez aussi découvrir la [[localisation|carte]] du Mini-monde sur OpenStreetMap\</tw-passagedata><tw-passagedata pid="28" name="perdu" tags="nuit" position="1521,612">!Vous avez perdu !
+* Vous pouvez aussi découvrir la [[localisation|carte]] du Mini-monde sur OpenStreetMap\
+
+/*! Section Jardin */</tw-passagedata><tw-passagedata pid="5" name="bagnole" tags="jardin" position="607,109">!La bagnole
+&lt;&lt;auto-image "Le roi boit - Pierre. Kessler - 2012 "&gt;&gt;
+Euh, non, je crois bien que c'est une //Pigeot//, pas une //Coléo// !
+*[[Je retourne à ma fenêtre|maison]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="compost" tags="jardin" position="604,297">!Le compost
+&lt;&lt;auto-image "Lézard au naturel sur son lit de compost - P. Kessler - 2013"&gt;&gt; 
+C'est fou ce qu'on peut trouver comme vie dans un gros tas de déchets en putréfaction...  
+*[[Je creuse un peu...|tegenaire]]
+*[[Je retourne à ma fenêtre|maison]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="tegenaire" tags="jardin" position="476,294">!Au secours !
+&lt;&lt;auto-image "Araignée tégénaire - P. Kessler - 2013"&gt;&gt;
+Cette idée, aussi, d'aller déranger la ''tégénaire'' ! Mais rassurez-vous, cette araignée-là est inoffensive. Enfin, pour l'homme.
+Par contre, l'araignée s'invite dans votre panier...&lt;&lt;addToInv "une araignée tégénaire"&gt;&gt;
+*[[Je retourne à ma fenêtre|maison]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="grange" tags="jardin" position="599,422">!La grange
+&lt;&lt;auto-image "L'envol - P. Kessler - 2013"&gt;&gt;
+Si la grange du voisin n'est pas forcément décorative, elle a parfois des visiteurs sympas...  
+*[[Je veux observer la cigogne|cigogne]]
+*[[Je retourne à ma fenêtre|maison]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="cigogne" tags="jardin" position="474,419">!Vive l'Alsace
+&lt;&lt;auto-image "Cigogne en vol - P. Kessler - 2013"&gt;&gt;
+Et le magnifique oiseau qui en est un des symboles...
+*[[Je retourne à ma fenêtre|maison]]</tw-passagedata><tw-passagedata pid="10" name="affut" tags="jardin" position="599,547">! Une chaise-affût
+&lt;&lt;auto-image "Envol de mésange bleue - P. Kessler - 2015"&gt;&gt;
+De là, bien camouflé, on peut observer et/ou photographier, tous les petits animaux du jardin. Oiseaux, grenouilles, hérissons...  
+Et même tenter de les photographier en vol, comme cette mésange bleue.
+*[[Je retourne à ma fenêtre|maison]]
+*Je jette un coup d'œil [[aux grenouilles|grenouille]]
+*Je n'ai pas encore vu Robin le [[rouge-gorge|rouge-gorge]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="grenouille" tags="jardin" position="467,550">!Grenouille
+&lt;&lt;auto-image "Un œil d'or - P. Kessler - 2016"&gt;&gt;
+Un petit bassin de rien du tout, c'est suffisant pour avoir quelques grenouilles.  
+*[[Je retourne à ma fenêtre|maison]]
+*Non, non ! Encore [[un peu d'affût|affut]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="rouge-gorge" tags="jardin" position="599,678">!Robin
+&lt;&lt;auto-image "Robin : portrait au seau - P. Kessler - 2016"&gt;&gt;
+Robin, c'est le rouge-gorge du jardin. Si familier qu'il a même un nom !
+*[[Je retourne à ma fenêtre|maison]]
+*Non, non ! Encore [[un peu d'affût|affut]] ou alors, [[un coup d'œil au tas de compost|compost]]...
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;Dans la Maison
+&lt;&lt;/if&gt;&gt;
+
+/*! Section Infos */</tw-passagedata><tw-passagedata pid="13" name="carte" tags="" position="1078,505">!Localisation
+&lt;iframe width="700" height="550" frameborder="1" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=7.459974288940431%2C48.85861640881589%2C7.488255500793458%2C48.87061477566309&amp;amp;layer=mapnik" style="border: 1px solid black"&gt;&lt;/iframe&gt;
+Une carte proposée depuis le site OpenStreetMap sous forme d'//iframe// incluse dans la page Twine. 
+Attention, un iframe dans une page ''https'' doit être aussi en ''https''.
+* &lt;&lt;back "Je retourne à l'aventure"&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="credits" tags="" position="1204,504">!Crédits
+&lt;&lt;auto-image "Selfie gore - P. Kessler - 2016"&gt;&gt;
+Une aventure réalisée grâce aux outils et documents suivants :
+* [[Linux Mint|https://www.linuxmint.com/]] pour le système
+* [[Twine 2.0.11|https://twinery.org]] et [[Sugarcube 2.1.3|http://www.motoslave.net/sugarcube/2/]] pour l'histoire interactive
+* [[Atom|https://atom.io/]] pour l'édition de codes
+* [[Git|https://git-scm.com/]] et [[Github|https://github.com/]] pour le //versionning// et l'hébergement
+* [[The Gimp|https://www.gimp.org/]] pour le traitement des images
+* et [[Audacity|http://audacity.fr/]] pour celui des sons.
+* Les ambiances sonores ont été créées par [[Bensound|http://www.bensound.com/]]. 
+* Les crédits des photographies sont indiqués sous chacune d'elles.
+* Un grand merci aux animateurs du [[forum Twine|https://twinery.org/forum]] pour leurs précieux conseils distillés quasi-quotidiennement.
+Et aucun animal n'a été maltraité pendant cette réalisation? Ni aucun logiciel propriétaire utilisé...
+* &lt;&lt;back "Je retourne à l'aventure"&gt;&gt;
+
+/*! Section Forêt */</tw-passagedata><tw-passagedata pid="15" name="promenade" tags="foret" position="660,803">!Aux champignons
+&lt;&lt;auto-image "En sous-bois - P. Kessler - 2016"&gt;&gt;
+Je mets un de ces champignons dans mon panier, puis...
+&lt;&lt;addToInv "un champignon vénéneux"&gt;&gt;
+* Je fais quelques pas et [[je retourne à ma fenêtre|maison]] ?
+* Non, je veux ramasser [[encore quelques champignons|champignons]] ?
+&lt;&lt;set $experience to $experience+10&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="champignons" tags="foret" position="513,803">!Aux champignons
+&lt;&lt;auto-image "En sous-bois - P. Kessler - 2016"&gt;&gt;
+Êtes-vous vous bien sûr que ces champignons sont comestibles ?  
+*[[Je retourne à ma fenêtre|maison]]
+*[[Je prends le chemin qui s'enfonce dans le bois|chevreuil]]
+&lt;&lt;addToInv "quelques belles girolles"&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="chevreuil" tags="foret" position="380,809">!Brève rencontre
+&lt;&lt;auto-image "Brève rencontre - P. Kessler - 2011"&gt;&gt;
+Les chevreuils sont nombreaux dans le [[Neubruchwald|carte]]. Mais pas de sangliers !
+*[[Je retourne à ma fenêtre|maison]]
+&lt;&lt;if visited() is 1 &gt;&gt;
+	&lt;&lt;set $animaux +=1&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+/*! Section Dans la Maison */</tw-passagedata><tw-passagedata pid="18" name="escalier" tags="maison" position="912,625">!Dans la maison
+&lt;&lt;auto-image "Escalier fish-eye - P. Kessler - 2015"&gt;&gt;
+*[[Je retourne à ma fenêtre|maison]]
+* Ou on continue [[jusqu'au salon|salon]] ?</tw-passagedata><tw-passagedata pid="19" name="salon" tags="maison" position="912,750">!Au salon
+&lt;&lt;auto-image "Salon fish-eye - P. Kessler - 2015"&gt;&gt;
+Rien de bien particulier ici. Mais surtout, n'allez pas fureter avec votre souris dans &lt;&lt;mousegoto "perdu"&gt;&gt;les ''tiroirs du bureau''&lt;&lt;/mousegoto&gt;&gt; !
+*[[Je retourne à ma fenêtre|maison]]
+
+/*! Section Game Over */</tw-passagedata><tw-passagedata pid="20" name="victoire" tags="nuit" position="1515,106">!Vous avez gagné !
+&lt;&lt;auto-image "La Victoire guidant le peuple - Burgermac - 2016"&gt;&gt;
+Vous avez su trouver tous les animaux. ''Bravo''!    
+----
+Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.  
+Et merci de votre visite dans ce ''mini-monde''.
+&lt;&lt;set $animaux to 0&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="perdu" tags="nuit" position="1521,612">!Vous avez perdu !
 &lt;&lt;auto-image "Vespula Germanica - P. Kessler - 2015"&gt;&gt;
 Vous avez trouvé un animal de trop : ''vous étiez pourtant prévenu(e)'' !    
 La piqûre de cette guêpe géante vous inflige d'horribles souffrances. Vous n'êtes plus en état de continuer la partie : il vous faut quitter le ''mini-monde''.
 ----
-Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.</tw-passagedata><tw-passagedata pid="29" name="Widgets" tags="widget nobr" position="1525,745">&lt;&lt;widget "auto-image"&gt;&gt;
+Si vous voulez recommencer la partie, cliquez sur le bouton corresondant dans la barre latérale. Sinon, fermez simplement votre navigateur.</tw-passagedata><tw-passagedata pid="22" name="StoryCaption" tags="" position="1140,227">''Tableau de bord''
+Points : $points
+Expérience : $experience
+Animaux vus (sur $max_animaux) : $animaux</tw-passagedata><tw-passagedata pid="23" name="StoryInit" tags="" position="1263,102">&lt;&lt;set $online_medias_url to "https://www.bac-a-sable.eu/mini-monde/medias/"&gt;&gt;
+&lt;&lt;initInv&gt;&gt;
+&lt;&lt;set $son_nuit to $online_medias_url+"start.mp3"&gt;&gt;
+&lt;&lt;set $son_maison to $online_medias_url+"maison.mp3"&gt;&gt;
+&lt;&lt;set $son_foret to $online_medias_url+"foret.mp3"&gt;&gt;
+&lt;&lt;set $son_jardin to $online_medias_url+"jardin.mp3"&gt;&gt;
+&lt;&lt;cacheaudio "nuit" $son_nuit&gt;&gt;
+&lt;&lt;cacheaudio "maison" $son_maison&gt;&gt;
+&lt;&lt;cacheaudio "foret" $son_foret&gt;&gt;
+&lt;&lt;cacheaudio "jardin" $son_jardin&gt;&gt;
+&lt;&lt;waitforaudio&gt;&gt;
+&lt;&lt;addToInv "un petit panier en osier"&gt;&gt;
+&lt;&lt;set $points to 0&gt;&gt;
+&lt;&lt;set $experience to 10&gt;&gt;
+&lt;&lt;set $track to "nuit"&gt;&gt;
+&lt;&lt;set $animaux to 0&gt;&gt;
+&lt;&lt;set $max_animaux to 8&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="StoryMenu" tags="" position="1011,227">[[Vue sur la planète|maison]]
+[[En forêt|promenade]]
+[[Affût dans le jardin|affut]]
+[[Dans la maison|escalier]]
+&lt;hr /&gt;
+&lt;&lt;click "Inventaire"&gt;&gt;
+	&lt;&lt;script&gt;&gt;
+	var dialog = Dialog.setup("Inventaire", "my-dialog-class");
+	new Wikifier(dialog, Story.get("inventaire").processText());
+	Dialog.open();
+	&lt;&lt;/script&gt;&gt;
+&lt;&lt;/click&gt;&gt;
+[[Crédits|credits]]
+&lt;&lt;click "Variables"&gt;&gt;&lt;&lt;checkvars&gt;&gt;&lt;&lt;/click&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="StoryBanner" tags="" position="1265,232">Bienvenue dans mon...</tw-passagedata><tw-passagedata pid="26" name="PassageHeader" tags="" position="1138,102">&lt;&lt;silently&gt;&gt;
+&lt;&lt;if settings.audioEnabled&gt;&gt;
+	&lt;&lt;if tags().includes("silence")&gt;&gt;
+		&lt;&lt;audio ":playing" pause&gt;&gt;
+	&lt;&lt;elseif tags().includes("nuit")&gt;&gt;
+		&lt;&lt;set $track to "nuit"&gt;&gt;
+	&lt;&lt;elseif tags().includes("maison")&gt;&gt;
+		&lt;&lt;set $track to "maison"&gt;&gt;
+	&lt;&lt;elseif tags().includes("jardin")&gt;&gt;
+		&lt;&lt;set $track to "jardin"&gt;&gt;	
+	&lt;&lt;elseif tags().includes("foret")&gt;&gt;
+   		&lt;&lt;set $track to "foret"&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if ($track neq $last_track)&gt;&gt;
+		&lt;&lt;audio ":playing" stop&gt;&gt;
+		&lt;&lt;audio $track loop play&gt;&gt;
+		&lt;&lt;set $last_track to $track&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+	&lt;&lt;masteraudio stop&gt;&gt;
+	&lt;&lt;/if&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="PassageFooter" tags="" position="1012,99">&lt;hr /&gt;
+&lt;nobr&gt;&lt;small&gt;Réalisé avec ''[[Twine|https://twinery.org]]'' - P. Kessler - février 2017 -  Licence &lt;a href="https://creativecommons.org/licenses/by-nc-sa/3.0/fr/"&gt;Creative Commons BY-NC-SA&lt;/a&gt;&lt;/small&gt;&lt;/nobr&gt;</tw-passagedata><tw-passagedata pid="28" name="inventaire" tags="" position="1518,231">&lt;&lt;if $inventory.length == 0&gt;&gt;Vous n'avez rien. Rien du tout.&lt;&lt;else&gt;&gt;''Vous avez en votre possession :''
+&lt;&lt;listInv&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="Widgets" tags="widget nobr" position="1525,745">&lt;&lt;widget "auto-image"&gt;&gt;
 	&lt;&lt;nobr&gt;&gt;
 	&lt;&lt;set $image to $online_medias_url+passage()+".jpg"&gt;&gt;
 	&lt;figure&gt;
