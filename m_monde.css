@@ -1,0 +1,234 @@
+::StoryCSS [stylesheet]
+@import url('https://fonts.googleapis.com/css?family=Slackey');
+/****************************************************************
+	BLEACHED - A largely white style for SugarCube (v2.7.0+)
+****************************************************************/
+body {
+	color: #111;
+	background-color: #fff;
+	background-image: linear-gradient(to bottom, whitesmoke 0%, white 100%);
+		background-repeat: no-repeat;
+}
+	body.foret {
+	background-image: linear-gradient(to bottom, peru 0%, white 100%);
+}
+body.jardin {
+	background-image: linear-gradient(to bottom, seagreen 0%, white 100%);
+}
+body.maison {
+	background-image: linear-gradient(to bottom, steelblue 0%, white 100%);
+}
+body.nuit {
+	background-image: linear-gradient(to bottom, #333 10%, white 100%);
+}
+h1 {
+	margin:0; padding:0
+}
+.passage>h1 {
+	font-family: 'Slackey', cursive;
+	font-size: 3.5em;
+	font-weight: normal;
+	line-height: 130%;
+}
+.nuit h1 {
+	color:white;
+}
+#story-title {
+	color: black;
+}
+.passage-mission>ul,.passage>ul {
+	list-style-type: none;
+	border-left:1px solid #999;
+}
+figure {
+	text-align: center;
+}
+#countdown {
+	color: red;
+	font-size: 1.5em;
+	border: 1px solid #999;
+	padding: 2px;
+	background-color: black;
+}
+.maison .macro-linkreplace {
+		font-size: 1.3em;
+}	
+a {
+	color: #35c;
+}
+a:hover {
+	color: #57e;
+}
+span.link-disabled {
+	color: #777;
+}
+button {
+	color: #111;
+	background-color: #acf;
+	border-color: #8ad;
+}
+button:hover {
+	background-color: #8ad;
+	border-color: #68b;
+}
+button:disabled {
+	background-color: #ccc;
+	border-color: #aaa;
+}
+#start : {
+	background-color: #fff !important;
+	border-color: #333;
+}
+input, select, textarea {
+	color: #111;
+	border-color: #ccc;
+}
+input:focus, select:focus, textarea:focus,
+input:hover, select:hover, textarea:hover {
+	background-color: #eee;
+	border-color: #111;
+}
+hr{ border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); }
+#story {
+	margin:0;
+	padding:0.5em;
+}
+.error {
+	background-color: #eaa;
+	border-left-color: #d77;
+}
+#ui-bar {
+	background-color: #eee;
+	border-color: #ccc;
+}
+#ui-bar hr {
+	border-color: #ccc;
+}
+#ui-bar-toggle,
+#ui-bar-history [id|="history"] {
+	color: #111;
+	border-color: #ccc;
+}
+#ui-bar-toggle:hover,
+#ui-bar-history [id|="history"]:hover {
+	background-color: #ccc;
+	border-color: #111;
+}
+#ui-bar-history [id|="history"]:disabled {
+	color: #ccc;
+	background-color: transparent;
+	border-color: #ccc;
+}
+#menu ul {
+	border-color: #ccc;
+}
+#menu li:not(:first-child) {
+	border-top-color: #ccc;
+}
+#menu li a {
+	color: #111;
+}
+#menu li a:hover {
+	background-color: #ccc;
+	border-color: #111;
+}
+/* Default dialog styling */
+#ui-overlay {
+	background-color: #777;
+}
+#ui-dialog-titlebar {
+	background-color: #ccc;
+}
+#ui-dialog-close:hover {
+	background-color: #b44;
+	border-color: #a33;
+}
+#ui-dialog-body {
+	background-color: #fff;
+	border-color: #ccc;
+}
+#ui-dialog-body hr {
+	background-color: #ccc;
+}
+/* List-based dialog styling */
+#ui-dialog-body.list li:not(:first-child) {
+	border-top-color: #ccc;
+}
+#ui-dialog-body.list li a {
+	color: #111;
+}
+#ui-dialog-body.list li a:hover {
+	background-color: #ccc;
+	border-color: #111;
+}
+/* Saves dialog styling */
+#ui-dialog-body.saves > *:not(:first-child),
+#ui-dialog-body.saves tr:not(:first-child) {
+	border-top-color: #ccc;
+}
+#ui-dialog-body.saves .empty {
+	color: #777;
+}
+/* Settings dialog styling */
+#ui-dialog-body.settings button[id|="setting-control"] {
+	color: #111;
+	border-color: #ccc;
+}
+#ui-dialog-body.settings button[id|="setting-control"]:hover {
+	background-color: #eee;
+	border-color: #111;
+}
+#ui-dialog-body.settings button[id|="setting-control"].enabled {
+	background-color: #9e9;
+	border-color: #7c7;
+}
+#ui-dialog-body.settings button[id|="setting-control"].enabled:hover {
+	background-color: #7c7;
+	border-color: #5a5;
+}
+#story-caption {
+	border : #ccc 1px solid;
+	padding : 3px;
+}
+#story-subtitle {
+	color: #666;
+	font-size: 0.8em
+}
+/* Debug view styling */
+html:not(.debug-view) #debug-view-toggle {
+	color: #111;
+	border-color: #ccc;
+}
+html:not(.debug-view) #debug-view-toggle:hover {
+	background-color: #eee;
+	border-color: #111;
+}
+html.debug-view #debug-view-toggle {
+	background-color: #9e9;
+	border-color: #7c7;
+}
+html.debug-view #debug-view-toggle:hover {
+	background-color: #7c7;
+	border-color: #5a5;
+}
+html.debug-view .debug {
+	background-color: #dc9;
+}
+html.debug-view .debug.hidden,
+html.debug-view .debug.hidden .debug {
+	background-color: #bbb;
+}
+img {
+	display: block; margin: 0 auto;
+}
+figure, figcaption {
+display: block;
+font-style: italic;
+font-variant: small-caps;
+color: #000;
+}
+nuit> figcaption {
+	color:white !important
+}
+/*! <<checkvars>> macro for SugarCube 2.x */
+#ui-dialog-body.checkvars{padding:1em}#ui-dialog-body.checkvars h1{font-size:1.5em;margin-top:0}#ui-dialog-body.checkvars table{border-collapse:collapse;border-spacing:0}#ui-dialog-body.checkvars thead tr{border-bottom:2px solid #ccc}#ui-dialog-body.checkvars tr:not(:first-child){border-top:1px solid #ccc}#ui-dialog-body.checkvars td,#ui-dialog-body.checkvars th{padding:.25em 1em}#ui-dialog-body.checkvars td:first-child,#ui-dialog-body.checkvars th:first-child{padding-left:.5em;border-right:1px solid #ccc}#ui-dialog-body.checkvars td:last-child,#ui-dialog-body.checkvars th:last-child{padding-right:.5em}#ui-dialog-body.checkvars th:first-child{text-align:center}#ui-dialog-body.checkvars td:first-child{font-weight:700;text-align:right}#ui-dialog-body.checkvars td{font-family:monospace,monospace;vertical-align:top;white-space:pre-wrap}#ui-dialog-body.checkvars .scroll-pad{margin:0;padding:0}
